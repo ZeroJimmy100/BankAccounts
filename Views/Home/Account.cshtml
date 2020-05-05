@@ -1,0 +1,51 @@
+@model WrapperViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form asp-action="Logout" asp-controller="Home" method="Post" asp-route-UserId="@Model.NewUser.UserId">
+        <input type="submit" value="Log out"/>
+    </form>
+    <h1>Welcome, @Model.NewUser.FirstName</h1>
+    @{
+        decimal myMoney = 0;
+        @foreach(var money in @Model.NewUser.AllTransaction){
+            myMoney += money.Amount;
+        }
+        <h4>Current Balance: @myMoney</h4>
+    }
+    <form asp-action="DepositOrWithdraw" asp-controller="Home" method="post" asp-route-UserId="@Model.NewUser.UserId">
+        <span asp-validation-for="NewTransaction.Amount"></span>
+        <label>Deposit/Withdraw: 
+            <input type="text" asp-for="NewTransaction.Amount" value=""/>
+        </label>
+    
+        <input type="submit" value="Submit"/>
+
+    </form>
+
+    <table class="table table-striped">
+            <tr>
+                <th>Amount: </th>
+                <th>Date </th>
+            </tr>
+           
+            @foreach (var item in @Model.NewUser.AllTransaction)
+            {
+                <tr>
+
+
+                        <td>@item.Amount</td>
+                        <td>@item.CreatedAt</td>
+                        
+                </tr>
+            }
+            
+        </table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+@model Login
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <a href="/">Need to Register?</a>
+
+    <div id="FormBox">
+            <form asp-action="LogUser" asp-controller="Home" method="post" asp-route-UserId="UserId">
+                
+                <span asp-validation-for="Email"></span>
+                <p>
+                    <label asp-for="Email"></label>        
+                    <input type="" asp-for="Email"/>
+                </p>
+                
+                <span asp-validation-for="PassWord"></span>
+                <p>
+                    <label asp-for="PassWord"></label>
+                    <input type="text" asp-for="PassWord"/>
+                </p>
+               
+                <p></p>
+                <input value="Submit" type="submit"/>
+
+            </form>
+        </div>
+</body>
+</html>
